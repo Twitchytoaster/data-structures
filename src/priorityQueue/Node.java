@@ -27,7 +27,7 @@ public class Node<T extends Comparable> {
         this.previous = previous;
     }
 
-    public T getValue() {
+    public T  getValue() {
         return value;
     }
 

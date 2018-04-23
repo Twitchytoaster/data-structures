@@ -5,6 +5,8 @@ public class MyLinkedList<T extends Comparable> {
     private Node<T> first;
     private Node<T> last;
 
+    int size;
+
     public void insertFirst(T element) {
         Node next = new Node(element);
         if (first != null) {
@@ -76,10 +78,47 @@ public class MyLinkedList<T extends Comparable> {
                 }
             }
         }
+
+        size++;
     }
 
     public Node<T> getLast() {
         return last;
+    }
+
+    public int binarySearch(T element) {
+        int lowerBound = 0;
+        int upperBound = size - 1;
+        int current;
+        int steps = 0;
+
+        while(true) {
+            current = (lowerBound + upperBound) / 2;
+            System.out.println(current);
+            T item = at(current);
+            if(item.equals(element)) {
+                return steps;
+            } else if(lowerBound > upperBound) {
+                return size;
+            } else {
+                if(element.compareTo(current) > 0) {
+                    lowerBound = current + 1;
+                    steps++;
+                } else {
+                    upperBound = current - 1;
+                    steps++;
+                }
+            }
+        }
+    }
+
+    public T at(int index) {
+        Node<T> temp = first;
+        for(int i = 0; i < index; i++) {
+            temp = temp.getNext();
+        }
+        T value = first.getValue();
+        return temp.getValue();
     }
 
     public String toString() {
