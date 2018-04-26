@@ -30,6 +30,71 @@ public class BinaryTree {
         }
     }
 
+    public void delete(int key) {
+        TreeNode previous = findPrevious(key);
+        TreeNode toDelete;
+
+        if(key < previous.getKey()) {
+            toDelete = previous.getLeftNode();
+            if(toDelete.getLeftNode() == null && toDelete.getRightNode() == null) {
+                setRootWithoutChildToNull(true, previous);
+            } else if((toDelete.getLeftNode() == null && toDelete.getRightNode() != null) || (toDelete.getLeftNode() != null && toDelete.getRightNode() == null)) {
+
+            }
+        } else if(key > previous.getKey()) {
+            toDelete = previous.getRightNode();
+            if(toDelete.getLeftNode() == null && toDelete.getRightNode() == null) {
+                setRootWithoutChildToNull(false, previous);
+            }
+        }
+    }
+
+    private void setRootWithOneChildToNull(boolean isLeftChild
+            , TreeNode parent) {
+        if(isLeftChild) {
+
+        }
+    }
+
+    private TreeNode findTreeNodeToReplaceWithOneChild(TreeNode treeNode) {
+        TreeNode current = treeNode.getR;
+
+        while(current != null) {
+
+        }
+    }
+
+    private void setRootWithoutChildToNull(boolean isLeftChild
+            , TreeNode parent) {
+        if(isLeftChild) {
+            parent.setLeftNode(null);
+        } else {
+            parent.setRightNode(null);
+        }
+    }
+
+    public TreeNode findPrevious(int key) {
+        TreeNode current = root;
+        TreeNode previous = root;
+
+        if(root == null) {
+            return null;
+        } else {
+            while (current.getKey() != key) {
+                if(key > current.getKey()) {
+                    previous = current;
+                    current = current.getRightNode();
+                } else if(key < current.getKey()) {
+                    previous = current;
+                    current = current.getLeftNode();
+                } else if(current == null) {
+                    return null;
+                }
+            }
+        }
+        return previous;
+    }
+
     public TreeNode find(int key) {
         TreeNode current = root;
 
