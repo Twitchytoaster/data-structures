@@ -57,4 +57,17 @@ public class BinaryTree {
         }
         return current;
     }
+
+    public void inOrder(TreeNode root) {
+        if(root != null) {
+            inOrder(root.getLeftNode());
+
+            System.out.println("Key: " + root.getKey());
+            inOrder(root.getRightNode());
+        }
+    }
+
+    public TreeNode getRoot() {
+        return root;
+    }
 }

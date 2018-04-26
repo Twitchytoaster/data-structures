@@ -7,6 +7,6 @@ public class TreeMain {
         tree.insert(10);
         tree.insert(11);
         tree.insert(15);
-        System.out.println(tree.minimum().getKey());
+        tree.inOrder(tree.getRoot());
     }
 }
