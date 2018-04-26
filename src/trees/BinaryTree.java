@@ -6,7 +6,7 @@ public class BinaryTree {
 
     public void insert(int key) {
         if (root == null) {
-            root.setKey(key);
+            root = new TreeNode(key);
         } else {
             TreeNode current = root;
             TreeNode parent;
@@ -45,6 +45,15 @@ public class BinaryTree {
                     return null;
                 }
             }
+        }
+        return current;
+    }
+
+    public TreeNode minimum() {
+        TreeNode current = root;
+
+        while (current.getLeftNode() != null) {
+            current = current.getLeftNode();
         }
         return current;
     }
