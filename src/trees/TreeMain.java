@@ -8,5 +8,8 @@ public class TreeMain {
         tree.insert(11);
         tree.insert(15);
         tree.inOrder(tree.getRoot());
+        tree.delete(10);
+        System.out.println();
+        tree.inOrder(tree.getRoot());
     }
 }
