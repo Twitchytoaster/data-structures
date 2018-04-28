@@ -43,7 +43,7 @@ public class BinaryTree {
             } else if(toDelete.getLeftNode() == null && toDelete.getRightNode() != null) {
                 setRootWithOneChildToNull(true, previous);
             } else {
-
+                setRootWithTwoChildNodesToNull(toDelete);
             }
         } else if (key > previous.getKey()) {
             toDelete = previous.getRightNode();
@@ -53,24 +53,28 @@ public class BinaryTree {
                 setRootWithOneChildToNull(false, previous);
             } else if(toDelete.getLeftNode() != null && toDelete.getRightNode() == null) {
                 setRootWithOneChildToNull(false, previous);
+            } else {
+                System.out.println(previous.getKey());
+                setRootWithTwoChildNodesToNull(toDelete);
             }
         }
     }
 
-    private void setRootWithTwoChildNodesToNull(TreeNode parent) {
-        TreeNode current = parent.getRightNode();
-        TreeNode previous = null;
+    private void setRootWithTwoChildNodesToNull(TreeNode toDelete) {
+        TreeNode current = toDelete.getRightNode();
+        TreeNode previous = current;
 
-        while (current.getLeftNode() != null) {
-            previous = current;
-            current = current.getLeftNode();
+        if(current.getLeftNode() == null) {
+            toDelete.setRightNode(null);
+        } else {
+            while (current.getLeftNode() != null) {
+                previous = current;
+                current = current.getLeftNode();
+            }
         }
 
-        TreeNode lastNode = previous.getLeftNode();
-
-        if(previous.getRightNode() == null) {
-            parent.setKey(lastNode.getKey());
-        }
+        previous.setLeftNode(current.getRightNode());
+        toDelete.setKey(current.getKey());
     }
 
     private void setRootWithOneChildToNull(boolean isLeftChild
